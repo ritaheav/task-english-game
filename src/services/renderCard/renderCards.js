@@ -1,0 +1,46 @@
+export const renderCard = (card) => {
+  const cardItem = document.createElement('div');
+  cardItem.className = 'card card-item';
+  cardItem.setAttribute('data-word', card.word);
+  const cardFront = document.createElement('div');
+  cardFront.className = 'card-front';
+  const cardBack = document.createElement('div');
+  cardBack.className = 'card-back';
+  const cardImage = document.createElement('div');
+  cardImage.className = 'card-image';
+  const img = document.createElement('img');
+  img.src = card.image;
+  const cardImageBack = document.createElement('div');
+  cardImageBack.className = 'card-image';
+  const imgBack = document.createElement('img');
+  imgBack.src = card.image;
+  const cardDesc = document.createElement('div');
+  cardDesc.className = 'card-desc';
+  const cardDescBack = document.createElement('div');
+  cardDescBack.className = 'card-desc';
+  const cardText = document.createElement('div');
+  const cardTextBack = document.createElement('div');
+  const turn = document.createElement('div');
+  cardText.className = 'card-text';
+  cardTextBack.className = 'card-text';
+  cardText.innerHTML = card.word;
+  cardTextBack.innerHTML = card.translation;
+  turn.className = 'turn';
+  turn.innerHTML = '<span class="material-icons turn-btn">sync</span>';
+  const audio = document.createElement('audio');
+  audio.src = card.audioSrc;
+  cardItem.append(cardFront);
+  cardFront.append(cardImage);
+  cardImage.append(img);
+  cardFront.append(cardDesc);
+  cardDesc.append(cardText);
+  cardDesc.append(turn);
+  cardItem.append(cardBack);
+  cardBack.append(cardImageBack);
+  cardImageBack.append(imgBack);
+  cardBack.append(cardDescBack);
+  cardDescBack.append(cardTextBack);
+  cardItem.append(audio);
+
+  return cardItem;
+}

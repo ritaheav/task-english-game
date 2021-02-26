@@ -1,0 +1,442 @@
+:root {
+    --card-bg-color:white;
+    --checkbox-bg-color: white;
+    --text-color: white;
+    --modal-bg-color: white;
+    --menu-container-bg: rgba(41, 41, 41, 0.6);
+    --switch-bg: linear-gradient(40deg,#00bf82,#0099ae);
+    --switch-check-bg: linear-gradient(40deg,#ffd86f,#fc6262);
+    --btn-clean-repeat: #ff3a3a;
+    --failed: red;
+    --success: green;
+}
+
+body {
+    margin: 0%;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(images/fon.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wrapper {
+    margin: 10px 20px;
+}
+#category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card {
+    margin: 10px;
+    max-width: 300px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    cursor: pointer;
+    transition: .3s;
+    height: 250px; 
+    background: var(--card-bg-color);
+}
+.card-item { 
+    transition: all 0.5s ease;
+}
+.card-front {
+    transform: rotateY(0deg);
+}
+.card-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* height: 270px; */
+}
+.card-front, .card-back {
+    transition: all 0.5s ease;
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;   
+}
+.card-back {
+    transform: rotateY(180deg);
+}
+.front-rotate {
+    transform: rotateY(180deg);
+}
+.back-rotate {
+    transform: rotateY(360deg);
+}
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,.4);
+}
+.card.card-item .inner-card {
+    transform: rotateX(180deg);
+}
+
+.card-image img{
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    height: 100%;
+}
+
+.card-text {
+    font-size: 20px;
+    text-align: center;
+}
+.card-desc {
+    padding: 10px 0;
+    position: relative;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.switch {
+    position: relative;
+    width: 121px;
+    height: 40px;
+    border-radius: 25px;
+}
+.checkbox {
+    visibility: hidden;
+}
+.checkbox:checked + .checkbox-label {
+    right: 82px;
+}
+.checkbox-label {
+    display: block;
+    z-index: 1;
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    top: 1px;
+    right: 1px;
+    background: var(--checkbox-bg-color);
+    border-radius: 50%;
+    border: 1px solid #F6F5FA;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.train, .play {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color:var(--text-color);
+    position: absolute;
+    z-index: 1;
+    text-transform: uppercase;
+    top: 12px;
+}
+.play {
+    right: 20px;
+}
+.none {
+    display: none;
+}
+.switch-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--switch-bg);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.15), inset 0 0 3px rgba(0,0,0,.2);
+    border-radius: 25px;
+}
+.checkbox:checked ~ .switch-bg {
+    background: var(--switch-check-bg);
+}
+.burger, .burger-menu {
+    display: flex;
+    cursor: pointer;
+}
+.burger span, .burger-menu span {
+    font-size: 40px;
+}
+.burger-menu span {
+    color: var(--text-color);
+}
+.burger-menu {
+    margin-left: 37px;
+    margin-top: 20px;
+    width: 40px;
+}
+.main {
+    margin-top: 100px;
+    min-height: calc(100vh - 270px);
+}
+.game-mode .main {
+    min-height: calc(100vh - 330px);
+}
+.menu-container{
+	position: fixed;
+    top: 0px;
+	width: 100%;
+    height: 100%;
+    z-index: 2;
+    left:-180%;
+    -webkit-transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+    display: flex;
+    flex-flow: column;
+    cursor: pointer;
+    background-color: var(--menu-container-bg);
+}
+.menu{
+	width: 250px;
+	overflow: hidden;  
+    height: 100%;
+    background: var(--switch-bg);
+}
+.activity {
+    left: 0;
+    -webkit-transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+}
+.menu ul {
+    list-style-type: none;
+}
+.menu ul li {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.turn {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    padding-right: 10px;
+}
+.game-mode .card-item .card-desc{
+    display: none;
+}
+.game-mode .card-item .card-image {
+    height: 100%;
+}
+.active-link {
+    text-decoration: underline;
+}
+#start-game {
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background: var(--switch-check-bg);
+    color: var(--text-color);
+    font-size: 20px;
+    border: none;
+    display: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 35px;
+    align-items: center;
+    justify-content: center;
+}
+.repeat {
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+.game-mode.game-card #start-game {
+    display: flex;
+}
+
+.success {
+    background-image: url(images/success.jpg);
+    background-repeat: no-repeat;
+    background-position: center 180px;
+    background-size: auto;
+}
+.success .main, .success .switch, .failed .main, .failed .switch, .success .footer, .failed .footer {
+    display: none;
+}
+.failed {
+    background-image: url(images/failure.jpg);
+    background-repeat: no-repeat;
+    background-position: center 180px;
+    background-size: auto;
+}
+.rating {
+    display: none;   
+    justify-content: flex-end;
+    width: 100%;
+    /* max-width: 1350px; */
+    margin: 0 auto;
+    overflow-x: hidden;
+    line-height: 36px;
+    font-size: 36px;
+    position: absolute;
+    top: 135px;
+    right: 20px;
+}
+.game-mode.game-card .rating {
+    display: flex;
+}
+.star-error, .star-success {
+    flex-shrink: 0;
+    width: 60px;
+    min-width: 40px;
+    height: 60px;
+    margin: 0 5px;
+}
+.game-mode.game-card .card-item.checked-card {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.count-error {
+    display: none;
+}
+.failed .count-error {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    color: var(--failed);
+    font-weight: bold;
+}
+.success .count-error {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    color: var(--success);
+    font-weight: bold;
+}
+.git-logo img {
+    width: 35px;
+}
+.rs-logo img {
+    width: 90px;
+}
+.footer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+.git-block {
+    width: 75px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.rs-block {
+    margin-left: 15px;
+}
+.current-page {
+    color: black !important;
+}
+#table {
+    background-color: white;
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+}
+#table td {   
+    padding: 5px;
+    border: 1px solid black;
+}
+#table th {
+    padding: 10px;
+    border: 1px solid black;
+}
+.container-table {
+    width: 930px;
+    overflow-x: auto;
+}
+.header-word {
+    cursor: pointer;
+}
+th div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-clean, .button-repeat-wrong {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: -68px;
+    position: absolute;
+    background: var(--btn-clean-repeat);
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    outline: none;
+}
+.button-repeat-wrong {
+    margin-left: 107px;
+}
+.modal_container {
+    background: var(--menu-container-bg);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.modal_container_wrap {
+    max-width: 540px;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+.close_btn span {
+    font-size: 40px;
+}
+.modal_container.show-modal {
+    display: block;
+}
+.close_btn {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    outline: none;
+    color: var(--text-color);
+    border: none;
+}
+.modal_wrap {
+    background-color: var(--modal-bg-color);
+    margin-top: 52px;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    max-width: 500px;
+    width: 100%;
+    border-radius: 9px;
+    text-align: center;
+    padding: 8px 0;
+}
+@keyframes modalopen {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}
+
+@media (max-width: 430px) {
+    body.success,  body.failed {
+        background-size: 300px 300px;
+    }
+}
+
